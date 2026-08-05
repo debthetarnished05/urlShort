@@ -5,8 +5,10 @@ import urlRoutes from "./routes/url.js";
 import authRoutes from "./routes/auth.js";
 import redirectRoutes from "./routes/redirects.js";
 import dotenv from "dotenv";
+import dns from "dns";
 
 dotenv.config();
+dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 const PORT = process.env.PORT || 5000;
 
