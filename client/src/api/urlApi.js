@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000'
+
 
 function authHeader() {
   const token = localStorage.getItem('urlshort_token')
@@ -6,7 +6,7 @@ function authHeader() {
 }
 
 export async function createShortUrl(url) {
-  const res = await fetch(`${BASE_URL}/url`, {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/url`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...authHeader() },
     body: JSON.stringify({ url }),
@@ -19,7 +19,7 @@ export async function createShortUrl(url) {
 }
 
 export async function getAllUrls() {
-  const res = await fetch(`${BASE_URL}/url/all`, {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/url/all`, {
     headers: { ...authHeader() },
   })
   if (!res.ok) throw new Error('Failed to fetch URLs')
@@ -27,13 +27,13 @@ export async function getAllUrls() {
 }
 
 export async function getAnalytics(shortId) {
-  const res = await fetch(`${BASE_URL}/url/analytics/${shortId}`)
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/url/analytics/${shortId}`)
   if (!res.ok) throw new Error('Failed to fetch analytics')
   return res.json()
 }
 
 export async function updateUrl(shortId, newUrl) {
-  const res = await fetch(`${BASE_URL}/url/${shortId}`, {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/url/${shortId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', ...authHeader() },
     body: JSON.stringify({ url: newUrl }),
@@ -43,7 +43,7 @@ export async function updateUrl(shortId, newUrl) {
 }
 
 export async function deleteUrl(shortId) {
-  const res = await fetch(`${BASE_URL}/url/${shortId}`, {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/url/${shortId}`, {
     method: 'DELETE',
     headers: { ...authHeader() },
   })
@@ -52,5 +52,5 @@ export async function deleteUrl(shortId) {
 }
 
 export function getRedirectUrl(shortId) {
-  return `${BASE_URL}/${shortId}`
+  return `${import.meta.env.VITE_BACKEND_URL}/${shortId}`
 }
