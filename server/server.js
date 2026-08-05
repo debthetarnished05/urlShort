@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
@@ -23,6 +23,14 @@ app.use(cors({
 app.use(express.json());
 
 connectDB();
+
+app.get("/", (req, res) => {
+    res.status(200).json({ message: "URL Shortener API is running!" });
+});
+
+app.use("/auth", authRoutes);
+app.use("/url", urlRoutes);
+app.use("/", redirectRoutes);
 
 app.use("/auth", authRoutes);
 app.use("/url", urlRoutes);
