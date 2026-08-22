@@ -35,7 +35,7 @@ A full-stack URL shortener built with React, Node.js, Express, and MongoDB. It f
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/url-shortener.git
+git clone https://github.com/debthetarnished05/urlShort.git
 cd urlShort
 ```
 
