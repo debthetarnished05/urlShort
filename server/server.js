@@ -32,9 +32,6 @@ app.use("/auth", authRoutes);
 app.use("/url", urlRoutes);
 app.use("/", redirectRoutes);
 
-app.use("/auth", authRoutes);
-app.use("/url", urlRoutes);
-app.use("/", redirectRoutes);
 
 app.use((err, req, res, next) => {
     console.error("Unhandled error:", err);
